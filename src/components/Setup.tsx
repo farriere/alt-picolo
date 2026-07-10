@@ -45,7 +45,7 @@ export default function Setup({ onStart, error }: SetupProps) {
   return (
     <div className="setup-screen">
       <header className="setup-header">
-        <h1 className="setup-title">Picolo</h1>
+        <h1 className="setup-title">Katy's Midlife Crisis</h1>
         <p className="setup-subtitle">The drinking game</p>
       </header>
 

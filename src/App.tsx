@@ -93,7 +93,6 @@ export default function App() {
   if (phase === "playing") {
     return (
       <GameCard
-        key={currentIndex}
         question={questions[currentIndex]}
         players={players}
         currentIndex={currentIndex}
