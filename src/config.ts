@@ -1,7 +1,7 @@
-/** Sheet ID from build-time env variable — can be overridden at runtime via the Setup screen. */
+/** Sheet ID sourced from VITE_GOOGLE_SHEET_ID in .env, overrideable at runtime via Setup. */
 export const DEFAULT_SHEET_ID: string =
   (import.meta.env.VITE_GOOGLE_SHEET_ID as string | undefined) ?? "";
 
-export const LS_SHEET_KEY = "Sheet1";
+export const LS_SHEET_KEY = "picolo_sheet_id";
 export const MIN_PLAYERS = 2;
 export const MAX_PLAYERS = 10;

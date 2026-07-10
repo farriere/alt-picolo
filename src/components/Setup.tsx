@@ -64,7 +64,7 @@ export default function Setup({ onStart, error }: SetupProps) {
         </p>
       </section>
 
-      <section className="setup-section">
+      <section className="setup-section setup-section--players">
         <label className="field-label">
           Players ({players.length}/{MAX_PLAYERS})
         </label>

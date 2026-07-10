@@ -62,9 +62,10 @@ export default function GameCard({
       style={{ background: `linear-gradient(145deg, ${colorA}, ${colorB})` }}
       onClick={onNext}
     >
-      {/* decorative circles */}
-      <div className="card-circle card-circle--top" />
-      <div className="card-circle card-circle--bottom" />
+      {/* decorative blobs */}
+      <div className="card-blob card-blob--a" />
+      <div className="card-blob card-blob--b" />
+      <div className="card-blob card-blob--c" />
 
       <div className="card-inner">
         <header className="card-header">
@@ -81,7 +82,13 @@ export default function GameCard({
         </main>
 
         <footer className="card-footer">
-          <span className="tap-hint">Tap to continue →</span>
+          <span className="tap-hint">Tap to continue</span>
+          <div className="progress-bar-wrap">
+            <div
+              className="progress-bar-fill"
+              style={{ width: `${((currentIndex + 1) / total) * 100}%` }}
+            />
+          </div>
         </footer>
       </div>
     </div>

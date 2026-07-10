@@ -1,4 +1,4 @@
-export type GamePhase = "setup" | "loading" | "playing" | "finished";
+export type GamePhase = "setup" | "loading" | "categories" | "playing" | "finished";
 
 export interface Question {
   prompt: string;

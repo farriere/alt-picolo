@@ -56,7 +56,7 @@ function parseCSV(csv: string): Question[] {
   const lines = csv.trim().split("\n");
   const questions: Question[] = [];
 
-  for (const line of lines) {
+  for (const line of lines.slice(1)) {  // skip header row
     const fields = parseCSVLine(line);
     const prompt = fields[0]?.trim() ?? "";
     const category = fields[1]?.trim() ?? "";

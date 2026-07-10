@@ -4,12 +4,14 @@ import { fetchQuestionsFromSheet } from "./utils/sheets";
 import { shuffleArray } from "./utils/gameUtils";
 import Setup from "./components/Setup";
 import GameCard from "./components/GameCard";
+import CategoryPicker from "./components/CategoryPicker";
 import FinishScreen from "./components/FinishScreen";
 import "./App.css";
 
 export default function App() {
   const [phase, setPhase] = useState<GamePhase>("setup");
   const [players, setPlayers] = useState<string[]>([]);
+  const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [error, setError] = useState<string | null>(null);
@@ -21,9 +23,8 @@ export default function App() {
       try {
         const fetched = await fetchQuestionsFromSheet(sheetId);
         setPlayers(playerNames);
-        setQuestions(shuffleArray(fetched));
-        setCurrentIndex(0);
-        setPhase("playing");
+        setAllQuestions(fetched);
+        setPhase("categories");
       } catch (err) {
         setError(
           err instanceof Error ? err.message : "An unexpected error occurred.",
@@ -32,6 +33,18 @@ export default function App() {
       }
     },
     [],
+  );
+
+  const handleConfirmCategories = useCallback(
+    (selected: Set<string>) => {
+      const filtered = allQuestions.filter((q) =>
+        selected.has(q.category || "Uncategorized"),
+      );
+      setQuestions(shuffleArray(filtered));
+      setCurrentIndex(0);
+      setPhase("playing");
+    },
+    [allQuestions],
   );
 
   const handleNext = useCallback(() => {
@@ -47,6 +60,7 @@ export default function App() {
   const handleRestart = useCallback(() => {
     setPhase("setup");
     setPlayers([]);
+    setAllQuestions([]);
     setQuestions([]);
     setCurrentIndex(0);
     setError(null);
@@ -55,9 +69,24 @@ export default function App() {
   if (phase === "loading") {
     return (
       <div className="loading-screen">
-        <div className="spinner" />
+        <div className="dots-loader">
+          <span />
+          <span />
+          <span />
+        </div>
         <p className="loading-text">Loading questions…</p>
       </div>
+    );
+  }
+
+  if (phase === "categories") {
+    return (
+      <CategoryPicker
+        allQuestions={allQuestions}
+        players={players}
+        onConfirm={handleConfirmCategories}
+        onBack={handleRestart}
+      />
     );
   }
 
