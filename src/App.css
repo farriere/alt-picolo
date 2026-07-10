@@ -948,3 +948,44 @@
   padding: 1rem 1.5rem 2rem;
   background: linear-gradient(to top, rgba(13, 11, 30, 1) 55%, transparent);
 }
+
+/* ── Combined setup: categories section ─────────────────────── */
+
+@keyframes section-reveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.setup-categories {
+  animation: section-reveal 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.setup-categories-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.875rem;
+}
+
+/* ── Button inline loading dots ─────────────────────────────── */
+
+.btn-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.btn-dots span {
+  display: block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  animation: dot-bounce 1.3s ease-in-out infinite;
+}
+.btn-dots span:nth-child(2) { animation-delay: 0.18s; }
+.btn-dots span:nth-child(3) { animation-delay: 0.36s; }
