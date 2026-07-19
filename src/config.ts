@@ -4,4 +4,3 @@ export const DEFAULT_SHEET_ID: string =
 
 export const LS_SHEET_KEY = "picolo_sheet_id";
 export const MIN_PLAYERS = 2;
-export const MAX_PLAYERS = 10;

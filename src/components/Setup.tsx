@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  DEFAULT_SHEET_ID,
-  LS_SHEET_KEY,
-  MAX_PLAYERS,
-  MIN_PLAYERS,
-} from "../config";
+import { DEFAULT_SHEET_ID, LS_SHEET_KEY, MIN_PLAYERS } from "../config";
 
 interface SetupProps {
   onStart: (players: string[], sheetId: string) => void;
@@ -19,7 +14,7 @@ export default function Setup({ onStart, error }: SetupProps) {
   };
 
   const addPlayer = () => {
-    if (players.length < MAX_PLAYERS) setPlayers((prev) => [...prev, ""]);
+    setPlayers((prev) => [...prev, ""]);
   };
 
   const removePlayer = (index: number) => {
@@ -44,9 +39,7 @@ export default function Setup({ onStart, error }: SetupProps) {
       </header>
 
       <section className="setup-section setup-section--players">
-        <label className="field-label">
-          Players ({players.length}/{MAX_PLAYERS})
-        </label>
+        <label className="field-label">Players ({players.length})</label>
 
         {players.map((name, idx) => (
           <div key={idx} className="player-row">
@@ -71,11 +64,9 @@ export default function Setup({ onStart, error }: SetupProps) {
           </div>
         ))}
 
-        {players.length < MAX_PLAYERS && (
-          <button className="add-player-btn" onClick={addPlayer}>
-            + Add player
-          </button>
-        )}
+        <button className="add-player-btn" onClick={addPlayer}>
+          + Add player
+        </button>
       </section>
 
       {error && <p className="error-msg">{error}</p>}
